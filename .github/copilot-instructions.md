@@ -44,7 +44,7 @@ root/
     components/   Reusable presentational pieces
     features/     Self-contained feature modules (add as app grows)
     lib/          Reusable utilities, API client, hooks
-    routes/       Route-level components (if router added)
+    sections/     Page sections (e.g. Home, Services, Portfolio)
     styles/       Global styles or tokens (if any)
     assets/       Static assets such as images, fonts
 ```

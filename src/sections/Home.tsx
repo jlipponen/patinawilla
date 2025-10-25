@@ -1,3 +1,4 @@
+// Moved from routes/Home.tsx
 interface HomeProps { language: 'fi' | 'en'; }
 
 export function Home({ language }: HomeProps) {
@@ -12,4 +13,3 @@ export function Home({ language }: HomeProps) {
 }
 
 export default Home;
-

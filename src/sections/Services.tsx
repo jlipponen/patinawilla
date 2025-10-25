@@ -1,3 +1,4 @@
+// Moved from routes/Services.tsx
 import ServiceCard from '../components/ServiceCard';
 
 interface ServicesProps { language: 'fi' | 'en'; }
@@ -34,4 +35,3 @@ export function Services({ language }: ServicesProps) {
 }
 
 export default Services;
-

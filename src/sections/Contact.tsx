@@ -1,3 +1,4 @@
+// Moved from routes/Contact.tsx
 interface ContactProps { language: 'fi' | 'en'; }
 
 export function Contact({ language }: ContactProps) {
@@ -25,4 +26,3 @@ export function Contact({ language }: ContactProps) {
 }
 
 export default Contact;
-

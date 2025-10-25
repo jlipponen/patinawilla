@@ -1,9 +1,10 @@
+// Moved from routes/Portfolio.tsx
 import entrepreneurPhoto from '../assets/images/ui/entrepreneur.jpg';
 import { useS3Gallery } from '../lib/useS3Gallery';
 
 interface AboutPortfolioProps { language: 'fi' | 'en'; }
 
-// This file will host both Portfolio and About sections for now to keep bundle small.
+// This file hosts both Portfolio and About sections to keep bundle small.
 export function About({ language }: AboutPortfolioProps) {
 	return (
 		<section id="about" aria-labelledby="about-heading">
@@ -58,4 +59,3 @@ export function Portfolio({ language }: PortfolioProps) {
 }
 
 export default Portfolio;
-
