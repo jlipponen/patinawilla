@@ -85,7 +85,6 @@ export interface PortfolioProps { language: 'fi' | 'en'; }
 		<section id="portfolio" aria-labelledby="portfolio-heading" className="alt">
 			<div className="container">
 				<h2 id="portfolio-heading">Portfolio</h2>
-				<p>{language === 'fi' ? 'Työkuvia.' : 'Work gallery.'}</p>
 				{error && (
 					<p role="alert" style={{ color: '#b00' }}>
 						{language === 'fi' ? 'Kuvien lataus epäonnistui.' : 'Failed to load images.'}

@@ -23,7 +23,7 @@ Characteristics:
 - Purpose: Marketing site for PatinaWilla - an upholstery and restoration company in Ulvila showcasing services and portfolio.
 - Audience: Potential clients seeking for upholstery and restoration services.
 - Clients: Primary: business clients (e.g. hotels, public space). Secondary: private customers.
-- Graphic style: Clean, modern, and professional with a focus on showcasing craftsmanship.
+- Graphic style: Clean, modern, lightweight and professional with a focus on upholstery.
 - Modern UX: simple navigation, clear calls to action, fast load times.
 
 Features:

@@ -25,8 +25,11 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
 
 	return (
 		<header className={collapsed ? 'nav-collapsed' : ''}>
-			<div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
-				<a href="#home" style={{ fontWeight: 700, fontSize: '1.1rem', letterSpacing: '.5px' }}>PatinaWilla</a>
+			<div className="container header-inner">
+				<div className="brand-block">
+					<a href="#home" className="brand">PatinaWilla</a>
+					<span className="brand-tagline">{language === 'fi' ? 'Verhoilu ja entisöinti Ulvilassa' : 'Upholstery & restoration in Ulvila'}</span>
+				</div>
 				<button
 					aria-label={toggleLabel}
 					aria-controls="site-nav"
@@ -39,7 +42,7 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
 				<nav id="site-nav" aria-label={language === 'fi' ? 'Päävalikko' : 'Main navigation'}>
 					<ul>
 						{navItems.map(item => (
-							<li key={item.id}><a href={`#${item.id}`}>{language === 'fi' ? item.labelFi : item.labelEn}</a></li>
+							<li key={item.id}><a href={`#${item.id}`}>{(language === 'fi' ? item.labelFi : item.labelEn).toUpperCase()}</a></li>
 						))}
 					</ul>
 				</nav>
