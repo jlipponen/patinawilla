@@ -71,8 +71,16 @@ header {
 }
 
 [data-theme="dark"] header {
-    background: transparent;
+    background: var(--color-bg-alt); /* Use a darker background color for dark mode */
     color: var(--header-text);
+}
+
+[data-theme="dark"] header a {
+    color: var(--color-text); /* Ensure links in the header are visible in dark mode */
+}
+
+[data-theme="dark"] .mobile-nav-toggle {
+    color: var(--color-text); /* Ensure the mobile navigation toggle button respects dark mode */
 }
 
 .header-inner {
@@ -103,12 +111,16 @@ header {
     color: var(--header-text, var(--color-text));
 }
 
+[data-theme="dark"] .brand-tagline {
+    color: var(--color-text); /* Ensure tagline text is visible in dark mode */
+}
+
 nav {
     margin-left: auto;
 }
 
 [data-theme="dark"] nav a {
-    color: var(--header-text);
+    color: var(--color-text); /* Ensure navigation tab names are visible in dark mode */
 }
 
 .container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 1rem; }
@@ -504,6 +516,16 @@ button { cursor: pointer; }
     background: var(--color-accent-hover);
 }
 
+/* Adjust toggle button background for dark mode */
+[data-theme="dark"] .toggle-btn {
+    background: var(--linen-300); /* Lighter color for dark mode */
+    color: var(--color-text);
+}
+
+[data-theme="dark"] .toggle-btn:hover {
+    background: var(--linen-400); /* Slightly darker hover color */
+}
+
 /* Removed .hidden utility (was unused) to reduce CSS surface area */
 
 /* Mobile nav */
@@ -518,6 +540,3 @@ button { cursor: pointer; }
 	.hero h1 { font-size: clamp(2.4rem, 10vw, 3.2rem); }
 	.hero-sub { font-size: .95rem; }
 }
-
-/* Utility (removed visually-hidden as unused; re-add if needed) */
-
