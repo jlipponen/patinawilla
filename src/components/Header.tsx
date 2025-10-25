@@ -15,8 +15,8 @@ interface HeaderProps { language: 'fi' | 'en'; onLanguageChange(lang: 'fi' | 'en
 
 export function Header({ language, onLanguageChange }: HeaderProps) {
     const [dark, setDark] = useState(false);
-    const [collapsed, setCollapsed] = useState(true); // true = nav hidden on mobile
     const [scrollY, setScrollY] = useState(0);
+    const [isMobile, setIsMobile] = useState<boolean>(() => typeof window !== 'undefined' ? window.matchMedia('(max-width:760px)').matches : false);
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
@@ -31,31 +31,36 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const toggleLabel = collapsed
-        ? (language === 'fi' ? 'Avaa valikko' : 'Open menu')
-        : (language === 'fi' ? 'Sulje valikko' : 'Close menu');
+    useEffect(() => {
+        // Update isMobile when viewport crosses the breakpoint
+        if (typeof window === 'undefined' || !window.matchMedia) return;
+        const mq = window.matchMedia('(max-width:760px)');
+        const handleChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+        // set initial state (in case render happened before constructor value)
+        setIsMobile(mq.matches);
+        // add listener
+        if (mq.addEventListener) mq.addEventListener('change', handleChange);
+        else mq.addListener && mq.addListener((ev: MediaQueryListEvent) => handleChange(ev));
+        return () => {
+            if (mq.removeEventListener) mq.removeEventListener('change', handleChange);
+            else mq.removeListener && mq.removeListener((ev: MediaQueryListEvent) => handleChange(ev));
+        };
+    }, []);
 
+    const threshold = isMobile ? 80 : 200; // reach full opacity faster on mobile
     const headerStyle = {
-        backgroundColor: `rgba(255, 255, 255, ${Math.min(scrollY / 200, 1)})`,
-        transition: 'background-color 0.3s ease',
+        backgroundColor: `rgba(255, 255, 255, ${Math.min(scrollY / threshold, 1)})`,
+        transition: 'background-color 0.22s ease',
     };
 
     return (
-        <header className={collapsed ? 'nav-collapsed' : ''} style={!dark ? headerStyle : undefined}>
+        <header style={!dark ? headerStyle : undefined}>
             <div className="container header-inner">
                 <div className="brand-block">
                     <a href="#home" className="brand">PatinaWilla</a>
                     <span className="brand-tagline">{language === 'fi' ? 'Verhoilu ja entisöinti Ulvilassa' : 'Upholstery & restoration in Ulvila'}</span>
                 </div>
-                <button
-                    aria-label={toggleLabel}
-                    aria-controls="site-nav"
-                    aria-expanded={!collapsed}
-                    className="mobile-nav-toggle toggle-btn"
-                    onClick={() => setCollapsed(c => !c)}
-                >
-                    {collapsed ? '☰' : '×'}
-                </button>
+                {/* Removed mobile hamburger: show navigation tabs inline on all viewport sizes */}
                 <nav id="site-nav" aria-label={language === 'fi' ? 'Päävalikko' : 'Main navigation'}>
                     <ul>
                         {navItems.map(item => (

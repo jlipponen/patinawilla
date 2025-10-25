@@ -540,12 +540,62 @@ button { cursor: pointer; }
 /* Mobile nav */
 .mobile-nav-toggle { display: none; }
 @media (max-width: 760px) {
-	nav ul { flex-direction: column; padding: 1.25rem 0 .75rem; }
-	nav { position: absolute; left: 0; right: 0; top: 100%; background: var(--color-bg); border-bottom: 1px solid var(--color-border); }
-	.mobile-nav-toggle { display: inline-flex; }
-	.nav-collapsed nav { display: none; }
-	.brand { font-size: 1.35rem; }
-	.hero { padding: 5.5rem 0 4rem; }
-	.hero h1 { font-size: clamp(2.4rem, 10vw, 3.2rem); }
-	.hero-sub { font-size: .95rem; }
+     /* Keep navigation visible inline on mobile instead of a hamburger menu.
+         Put brand + toolbar on the first row and tabs on a second row to avoid overflow. */
+     .header-inner { align-items: center; gap: 1rem; flex-wrap: wrap; }
+     nav { position: static; margin-left: 0; }
+     /* Make nav occupy full width and appear on its own row */
+     nav { flex-basis: 100%; order: 2; margin-top: .25rem; }
+     nav ul { flex-direction: row; gap: .75rem; padding: 0; justify-content: center; flex-wrap: wrap; }
+     /* Keep brand and toolbar together on the first row */
+     .brand-block { flex: 1 1 auto; order: 1; }
+     .toolbar { flex: 0 0 auto; order: 1; }
+    .brand { font-size: 1.35rem; }
+    .hero { padding: 5.5rem 0 4rem; }
+    .hero h1 { font-size: clamp(2.4rem, 10vw, 3.2rem); }
+    .hero-sub { font-size: .95rem; }
+}
+
+/* Make toolbar buttons smaller on narrow screens to avoid overflow */
+@media (max-width: 420px) {
+    .toolbar { gap: .45rem; }
+    .toolbar .toggle-btn {
+        padding: .35rem .6rem;
+        font-size: .65rem;
+        border-radius: .32rem;
+    }
+    /* Shrink svg icons used inside the buttons (react-icons) */
+    .toolbar .toggle-btn svg {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* Better overall centering and fit on small screens */
+@media (max-width: 760px) {
+    .container { padding-left: 1rem; padding-right: 1rem; }
+    .header-inner { justify-content: space-between; }
+    nav ul { justify-content: center; }
+    nav a { font-size: .65rem; }
+
+    /* Hero: stack and center content */
+    .hero-inner { flex-direction: column; align-items: center; text-align: center; }
+    .hero-content { max-width: 100%; width: 100%; }
+
+    /* Make service and portfolio grids single column for small screens */
+    .services-grid { grid-template-columns: 1fr; }
+    .portfolio .carousel-track, .carousel-track { grid-auto-flow: row; grid-template-columns: 1fr; }
+
+    /* About and contact sections stack and center */
+    .about-wrapper { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .contact-columns { grid-template-columns: 1fr; }
+
+    /* Ensure images center and do not overflow */
+    .about-photo img, .portfolio-item img, .hero img { margin: 0 auto; height: auto; max-width: 100%; }
+
+    /* Slightly reduce section vertical padding on small screens */
+    section { padding: 3.25rem 0; }
+
+    /* Footer elements centered */
+    footer .logos { justify-content: center; }
 }
