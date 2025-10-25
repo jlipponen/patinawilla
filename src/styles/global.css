@@ -96,7 +96,7 @@ header {
 }
 
 .brand {
-    font-weight: 700;
+    font-weight: 400;
     font-size: 1.55rem;
     letter-spacing: 1px;
     text-decoration: none;
@@ -105,14 +105,14 @@ header {
 
 .brand-tagline {
     font-size: .55rem;
-    letter-spacing: 1.2px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     opacity: .72;
     color: var(--header-text, var(--color-text));
 }
 
 [data-theme="dark"] .brand-tagline {
-    color: var(--color-text); /* Ensure tagline text is visible in dark mode */
+    color: var(--color-text);
 }
 
 nav {
@@ -120,7 +120,7 @@ nav {
 }
 
 [data-theme="dark"] nav a {
-    color: var(--color-text); /* Ensure navigation tab names are visible in dark mode */
+    color: var(--color-text);
 }
 
 .container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 1rem; }
@@ -134,7 +134,7 @@ nav ul {
 }
 
 nav a {
-    font-weight: 600;
+    font-weight: 00;
     font-size: .7rem;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -147,6 +147,15 @@ nav a:hover {
 
 .hero {
     padding: clamp(4rem, 18vh, 22vh) 0 6rem;
+}
+
+.hero-heading {
+    font-size: clamp(2.8rem, 7vw, 4.3rem);
+    margin: 0 0 1.5rem;
+    line-height: 1.05;
+    letter-spacing: .5px;
+    color: var(--home-text, var(--color-text));
+    font-weight: 100;
 }
 
 .hero-inner {
