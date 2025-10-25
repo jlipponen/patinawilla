@@ -12,9 +12,11 @@ export function About({ language }: AboutPortfolioProps) {
 		<section id="about" aria-labelledby="about-heading">
 			<div className="container about-wrapper">
 				<div>
-					<h2 id="about-heading">{language === 'fi' ? 'Meistä' : 'About Us'}</h2>
-					<p>{language === 'fi' ? 'PatinaWilla on erikoistunut laadukkaisiin verhoilu- ja entisöintipalveluihin. Kunnioitamme perinteisiä menetelmiä ja yhdistämme ne moderniin viimeistelyyn.' : 'PatinaWilla specializes in high-quality upholstery and restoration. We honor traditional techniques while combining them with modern finishing.'}</p>
-					<p>{language === 'fi' ? 'Yrityksen omistaja työskentelee tinkimättömällä käsityötaidolla ja asiakaslähtöisesti.' : 'The owner works with uncompromising craftsmanship and a customer-focused approach.'}</p>
+					<h2 id="about-heading">{language === 'fi' ? 'Meistä' : 'About'}</h2>
+					<p>{language === 'fi'
+						? 'Tarja on erikoistunut moninaisiin verhoilu- ja entisöintitöihin. Usean vuosikymmenen kokemuksella ja laadukkaimmilla materiaaleilla työn laatu on taattu.'
+						: 'Tarja specializes in various upholstery and restoration work. With decades of experience and the highest quality materials, the quality of the work is guaranteed.'}
+					</p>
 				</div>
 				<div className="about-photo">
 					<img src={entrepreneurPhoto} alt={language === 'fi' ? 'Yrityksen omistaja' : 'Company owner'} />
@@ -84,7 +86,7 @@ export interface PortfolioProps { language: 'fi' | 'en'; }
 	return (
 		<section id="portfolio" aria-labelledby="portfolio-heading" className="alt">
 			<div className="container">
-				<h2 id="portfolio-heading">Portfolio</h2>
+				<h2 id="portfolio-heading">{language === 'fi' ? 'Työnäytteitä' : 'Work samples'}</h2>
 				{error && (
 					<p role="alert" style={{ color: '#b00' }}>
 						{language === 'fi' ? 'Kuvien lataus epäonnistui.' : 'Failed to load images.'}

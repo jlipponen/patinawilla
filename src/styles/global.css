@@ -241,7 +241,7 @@ nav a:hover {
 }
 
 section {
-    padding: 6rem 0;
+    padding: 2rem 0;
     position: relative;
     overflow: visible;
 }
@@ -624,7 +624,7 @@ button { cursor: pointer; }
     .about-photo img, .portfolio-item img, .hero img { margin: 0 auto; height: auto; max-width: 100%; }
 
     /* Slightly reduce section vertical padding on small screens */
-    section { padding: 3.25rem 0; }
+    section { padding: 1.5rem 0; }
 
     /* Footer elements centered */
     footer .logos { justify-content: center; }

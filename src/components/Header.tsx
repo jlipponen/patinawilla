@@ -5,11 +5,10 @@ import { FaGlobe } from 'react-icons/fa';
 
 type NavItem = { id: string; labelFi: string; labelEn: string; };
 const navItems: NavItem[] = [
-	{ id: 'home', labelFi: 'Etusivu', labelEn: 'Home' },
 	{ id: 'services', labelFi: 'Palvelut', labelEn: 'Services' },
-	{ id: 'portfolio', labelFi: 'Portfolio', labelEn: 'Portfolio' },
-	{ id: 'about', labelFi: 'Meistä', labelEn: 'About Us' },
-	{ id: 'contact', labelFi: 'Yhteys', labelEn: 'Contact' }
+	{ id: 'portfolio', labelFi: 'Työnäytteitä', labelEn: 'Work samples' },
+	{ id: 'about', labelFi: 'Yrittäjä', labelEn: 'About' },
+	{ id: 'contact', labelFi: 'Yhteystiedot', labelEn: 'Contact' }
 ];
 
 interface HeaderProps { language: 'fi' | 'en'; onLanguageChange(lang: 'fi' | 'en'): void; }
