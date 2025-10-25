@@ -63,12 +63,20 @@ a { color: var(--color-accent); text-decoration: none; }
 a:hover { color: var(--color-accent-hover); }
 
 header {
-    position: sticky;
+    /* Fix header to viewport so it remains visible while scrolling.
+       Using fixed avoids subtle containing-block issues that can stop
+       position:sticky from behaving consistently across nested layouts. */
+    position: fixed;
     top: 0;
-    z-index: 10;
+    left: 0;
+    right: 0;
+    z-index: 1000;
     background: transparent;
     padding: 1.05rem 1rem .85rem;
 }
+
+/* Reserve space for the fixed header so document content doesn't sit under it */
+main { margin-top: 5.25rem; }
 
 [data-theme="dark"] header {
     background: var(--color-bg-alt); /* Use a darker background color for dark mode */
@@ -216,7 +224,7 @@ nav a:hover {
 section {
     padding: 6rem 0;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 /* Section-specific backgrounds */
@@ -577,6 +585,9 @@ button { cursor: pointer; }
     .header-inner { justify-content: space-between; }
     nav ul { justify-content: center; }
     nav a { font-size: .65rem; }
+
+    /* Reduce top offset on small screens (header is a bit shorter) */
+    main { margin-top: 4.5rem; }
 
     /* Hero: stack and center content */
     .hero-inner { flex-direction: column; align-items: center; text-align: center; }
