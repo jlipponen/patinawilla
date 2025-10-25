@@ -1,0 +1,103 @@
+/* Global styles & design tokens */
+:root {
+	--color-bg: #ffffff;
+	--color-bg-alt: #f5f7fa;
+	--color-text: #1a1a1a;
+	--color-accent: #7a553d; /* warm craft tone */
+	--color-accent-hover: #5a3e2b;
+	--color-border: #d9d9d9;
+	--color-footer-bg: #111;
+	--color-footer-text: #f1f1f1;
+	--max-width: 1180px;
+	--transition: 0.2s ease;
+}
+
+[data-theme="dark"] {
+	--color-bg: #121212;
+	--color-bg-alt: #1e1e1e;
+	--color-text: #eaeaea;
+	--color-border: #333;
+	--color-footer-bg: #000;
+	--color-footer-text: #ccc;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+	margin: 0;
+	font-family: system-ui, Arial, sans-serif;
+	background: var(--color-bg) url("../assets/images/ui/background.jpg") center/cover fixed no-repeat;
+	color: var(--color-text);
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: var(--color-accent); text-decoration: none; }
+a:hover { color: var(--color-accent-hover); }
+
+header {
+	position: sticky; top: 0; z-index: 10;
+	backdrop-filter: blur(8px);
+	background: rgba(255,255,255,0.75);
+	padding: .75rem 1rem;
+	border-bottom: 1px solid var(--color-border);
+}
+[data-theme="dark"] header { background: rgba(18,18,18,0.75); }
+
+.container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 1rem; }
+
+nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1.25rem; }
+nav a { font-weight: 600; font-size: .95rem; }
+
+.hero { padding: clamp(4rem, 12vh, 8rem) 0 3rem; text-align: center; }
+.hero h1 { font-size: clamp(2.2rem, 6vw, 3.5rem); margin: 0 0 1rem; letter-spacing: .5px; }
+.hero p { font-size: 1.15rem; max-width: 46ch; margin: 0 auto; }
+
+section { padding: 3.5rem 0; }
+section.alt { background: var(--color-bg-alt); }
+[data-theme="dark"] section.alt { background: var(--color-bg-alt); }
+section h2 { margin: 0 0 2rem; font-size: 2rem; }
+
+.services-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.service-card { border: 1px solid var(--color-border); padding: 1.25rem 1rem 1.5rem; background: #fff; border-radius: .5rem; display: flex; flex-direction: column; gap: .5rem; box-shadow: 0 1px 2px rgba(0,0,0,.06); transition: var(--transition); }
+[data-theme="dark"] .service-card { background: #1c1c1c; }
+.service-card:hover { transform: translateY(-3px); box-shadow: 0 4px 14px rgba(0,0,0,.12); }
+.service-card h3 { margin: 0; font-size: 1.1rem; }
+.service-card p { margin: 0; font-size: .9rem; }
+
+.about-wrapper { display: grid; gap: 2rem; grid-template-columns: minmax(0,1fr) 340px; align-items: start; }
+@media (max-width: 840px) { .about-wrapper { grid-template-columns: 1fr; } }
+.about-photo { border-radius: .75rem; overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,.18); }
+.about-photo img { width: 100%; height: auto; }
+
+.portfolio-grid { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fill,minmax(160px,1fr)); }
+.portfolio-item { position: relative; aspect-ratio: 1/1; overflow: hidden; border-radius: .5rem; background: #ddd; }
+.portfolio-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.contact-columns { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); }
+.contact-card { padding: 1.25rem 1rem; border: 1px solid var(--color-border); border-radius: .5rem; background: #fff; }
+[data-theme="dark"] .contact-card { background: #1c1c1c; }
+
+footer { margin-top: 4rem; padding: 3rem 0 2.5rem; background: var(--color-footer-bg); color: var(--color-footer-text); }
+footer .logos { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; }
+footer small { display: block; margin-top: 2rem; font-size: .75rem; opacity: .8; }
+
+.toolbar { display: flex; gap: .75rem; align-items: center; }
+button { cursor: pointer; }
+.toggle-btn { background: var(--color-accent); color: #fff; border: none; padding: .55rem .9rem; font-size: .75rem; border-radius: .4rem; letter-spacing: .5px; font-weight: 600; display: inline-flex; align-items: center; gap: .35rem; }
+.toggle-btn:hover { background: var(--color-accent-hover); }
+
+/* Removed .hidden utility (was unused) to reduce CSS surface area */
+
+/* Mobile nav */
+.mobile-nav-toggle { display: none; }
+@media (max-width: 760px) {
+	nav ul { flex-direction: column; padding: 1.25rem 0 .75rem; }
+	nav { position: absolute; left: 0; right: 0; top: 100%; background: var(--color-bg); border-bottom: 1px solid var(--color-border); }
+	.mobile-nav-toggle { display: inline-flex; }
+	.nav-collapsed nav { display: none; }
+}
+
+/* Utility (removed visually-hidden as unused; re-add if needed) */
+
