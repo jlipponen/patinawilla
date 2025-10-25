@@ -2,26 +2,110 @@
 interface ContactProps { language: 'fi' | 'en'; }
 
 export function Contact({ language }: ContactProps) {
+	const hours = [
+		{ fi: 'Maanantai', en: 'Monday', time: '10:00–17:00' },
+		{ fi: 'Tiistai', en: 'Tuesday', time: '10:00–17:00' },
+		{ fi: 'Keskiviikko', en: 'Wednesday', time: '10:00–17:00' },
+		{ fi: 'Torstai', en: 'Thursday', time: '10:00–17:00' },
+		{ fi: 'Perjantai', en: 'Friday', time: '10:00–17:00' },
+		{ fi: 'Lauantai', en: 'Saturday', time: language === 'fi' ? 'Suljettu' : 'Closed' },
+		{ fi: 'Sunnuntai', en: 'Sunday', time: language === 'fi' ? 'Suljettu' : 'Closed' },
+	];
+
+	const heading = language === 'fi' ? 'Yhteystiedot' : 'Contact details';
+	const openingHeading = language === 'fi' ? 'Aukioloajat' : 'Opening hours';
+	const addressHeading = language === 'fi' ? 'Osoite' : 'Address';
+
+	// Use a simple Google Maps embed via query string (no API key required).
+	const mapQuery = encodeURIComponent('Friitalantie 11 4, 28400 Ulvila');
+	const mapSrc = `https://www.google.com/maps?q=${mapQuery}&hl=fi&z=15&output=embed`;
+
 	return (
 		<section id="contact" aria-labelledby="contact-heading">
 			<div className="container">
-				<h2 id="contact-heading">{language === 'fi' ? 'Yhteys' : 'Contact'}</h2>
+				<h2 id="contact-heading">{heading}</h2>
+
 				<div className="contact-columns">
-					<div className="contact-card">
-						<h3>{language === 'fi' ? 'Sähköposti' : 'Email'}</h3>
-						<p><a href="mailto:patinawilla@gmail.com">patinawilla@gmail.com</a></p>
+					{/* Consolidated contact card: email, phone, social */}
+					<div className="contact-card contact-info-card" aria-label={language === 'fi' ? 'Yhteystiedot' : 'Contact'}>
+						<h3>{language === 'fi' ? 'Yhteystiedot' : 'Contact'}</h3>
+						<p>
+							<strong>{language === 'fi' ? 'Sähköposti' : 'Email'}: </strong>
+							<a href="mailto:patinawilla@gmail.com">patinawilla@gmail.com</a>
+						</p>
+						<p>
+							<strong>{language === 'fi' ? 'Puhelin' : 'Phone'}: </strong>
+							<a href="tel:0407554691">0407554691</a>
+						</p>
+						<p className="social-links" aria-label={language === 'fi' ? 'Sosiaalinen media' : 'Social media'}>
+							<a className="social-link" href="https://fi-fi.facebook.com/PatinaWilla-837301046326307/" target="_blank" rel="noopener noreferrer">
+								<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+									<path fill="currentColor" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.99 3.657 9.128 8.438 9.878v-6.99H7.898v-2.888h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.242 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.888h-2.33v6.99C18.343 21.128 22 16.99 22 12z" />
+								</svg>
+								<span>Facebook</span>
+							</a>
+							<span className="sep">·</span>
+							<a className="social-link" href="https://www.instagram.com/patinawilla/" target="_blank" rel="noopener noreferrer">
+								<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+									<path fill="currentColor" d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 3a1 1 0 110 2 1 1 0 010-2zM12 7a5 5 0 100 10 5 5 0 000-10z" />
+								</svg>
+								<span>Instagram</span>
+							</a>
+						</p>
 					</div>
-					<div className="contact-card">
-						<h3>{language === 'fi' ? 'Puhelin' : 'Phone'}</h3>
-						<p><a href="tel:0407554691">0407554691</a></p>
-					</div>
-					<div className="contact-card">
-						<h3>{language === 'fi' ? 'Sijainti' : 'Location'}</h3>
-						<p>Ulvila, Finland</p>
+
+					{/* Opening hours as its own card for consistent layout */}
+					<div className="contact-card hours-card" aria-labelledby="opening-hours-heading">
+						<h3 id="opening-hours-heading">{openingHeading}</h3>
+						<table className="hours-table" aria-hidden={false}>
+							<tbody>
+								{hours.map((h) => (
+									<tr key={h.en}>
+										<td className="day">{language === 'fi' ? h.fi : h.en}</td>
+										<td className="time">{h.time}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+						</div>
+
+						{/* Address/map card: moved into the grid so it can sit beside other cards on wide screens */}
+						<div className="contact-card map-card" aria-labelledby="address-heading">
+							<h3 id="address-heading">{addressHeading}</h3>
+							<address>
+								Friitalantie 11 C 4, 28400 Ulvila
+							</address>
+
+							<div className="map-wrapper" style={{ marginTop: '0.75rem' }}>
+								<iframe
+									title={language === 'fi' ? 'Kartta: Friitalantie 11 C 4, Ulvila' : 'Map: Friitalantie 11 C 4, Ulvila'}
+									src={mapSrc}
+									width="100%"
+									height={300}
+									style={{ border: 0 }}
+									loading="lazy"
+									referrerPolicy="no-referrer-when-downgrade"
+									aria-label={language === 'fi' ? 'Kartta osoitteeseen Friitalantie 11 4' : 'Map to Friitalantie 11 4'}
+									allowFullScreen
+								/>
+							</div>
+
+							<p style={{ marginTop: '.6rem' }}>
+								<a
+									className="cta-btn"
+									href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={language === 'fi' ? 'Avaa Google Mapsissa uudessa välilehdessä' : 'Open in Google Maps in a new tab'}
+								>
+									{language === 'fi' ? 'Avaa Google Mapsissa' : 'Open in Google Maps'}
+								</a>
+							</p>
+						</div>
+
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 	);
 }
 
