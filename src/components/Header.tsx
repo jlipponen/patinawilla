@@ -16,17 +16,32 @@ interface HeaderProps { language: 'fi' | 'en'; onLanguageChange(lang: 'fi' | 'en
 export function Header({ language, onLanguageChange }: HeaderProps) {
     const [dark, setDark] = useState(false);
     const [collapsed, setCollapsed] = useState(true); // true = nav hidden on mobile
+    const [scrollY, setScrollY] = useState(0);
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
     }, [dark]);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollY(window.scrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     const toggleLabel = collapsed
         ? (language === 'fi' ? 'Avaa valikko' : 'Open menu')
         : (language === 'fi' ? 'Sulje valikko' : 'Close menu');
 
+    const headerStyle = {
+        backgroundColor: `rgba(255, 255, 255, ${Math.min(scrollY / 200, 1)})`,
+        transition: 'background-color 0.3s ease',
+    };
+
     return (
-        <header className={collapsed ? 'nav-collapsed' : ''}>
+        <header className={collapsed ? 'nav-collapsed' : ''} style={!dark ? headerStyle : undefined}>
             <div className="container header-inner">
                 <div className="brand-block">
                     <a href="#home" className="brand">PatinaWilla</a>
