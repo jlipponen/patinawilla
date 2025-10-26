@@ -599,6 +599,7 @@ footer small { display: block; margin-top: 2rem; font-size: .75rem; opacity: .8;
 
 .toolbar { display: flex; gap: .75rem; align-items: center; }
 button { cursor: pointer; }
+
 .toggle-btn {
     background: var(--header-text, var(--color-accent));
     color: #fff;
@@ -615,6 +616,13 @@ button { cursor: pointer; }
 
 .toggle-btn:hover {
     background: var(--color-accent-hover);
+}
+
+.toolbar-icon {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 /* Adjust toggle button background for dark mode */

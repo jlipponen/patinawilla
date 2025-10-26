@@ -56,10 +56,10 @@ export function Header({ onLanguageChange }: HeaderProps) {
                 </nav>
                 <div className="toolbar">
                     <button className="toggle-btn" onClick={() => setDark(d => !d)} aria-label={dark ? t('theme.switchToLight') : t('theme.switchToDark')}>
-                        {dark ? <FaLightbulb size={15} /> : <FaRegLightbulb size={15} />}
+                        {dark ? <FaLightbulb className="toolbar-icon" /> : <FaRegLightbulb className="toolbar-icon" />}
                     </button>
                     <button className="toggle-btn" onClick={() => onLanguageChange(i18n.language === 'fi' ? 'en' : 'fi')} aria-label={t('header.languageToggle')}>
-                        <FaGlobe size={15} /> {i18n.language === 'fi' ? 'EN' : 'FIN'}
+                        <FaGlobe className="toolbar-icon" /> {i18n.language === 'fi' ? 'EN' : 'FIN'}
                     </button>
                 </div>
             </div>
