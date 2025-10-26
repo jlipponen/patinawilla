@@ -26,13 +26,13 @@ export function Contact(_: ContactProps) {
 				<div className="contact-columns">
 					{/* Consolidated contact card: email, phone, social */}
 					<div className="contact-card contact-info-card" aria-label={t('contact.contact')}>
-						<h3>{t('contact.contact')}</h3>
+						<h3 className="card-heading">{t('contact.contact')}</h3>
 						<p>
-							<strong>{t('contact.email')}: </strong>
+							<span className="card-subheading">{t('contact.email')}:</span>
 							<a href="mailto:patinawilla@gmail.com">patinawilla@gmail.com</a>
 						</p>
 						<p>
-							<strong>{t('contact.phone')}: </strong>
+							<span className="card-subheading">{t('contact.phone')}:</span>
 							<a href="tel:0407554691">0407554691</a>
 						</p>
 						<p className="social-links" aria-label={t('contact.social')}>
@@ -54,7 +54,7 @@ export function Contact(_: ContactProps) {
 
 					{/* Opening hours as its own card for consistent layout */}
 					<div className="contact-card hours-card" aria-labelledby="opening-hours-heading">
-						<h3 id="opening-hours-heading">{t('contact.openingHours')}</h3>
+						<h3 id="opening-hours-heading" className="card-heading">{t('contact.openingHours')}</h3>
 						<table className="hours-table" aria-hidden={false}>
 							<tbody>
 								{hours.map((h) => (
@@ -69,12 +69,12 @@ export function Contact(_: ContactProps) {
 
 						{/* Address/map card: moved into the grid so it can sit beside other cards on wide screens */}
 						<div className="contact-card map-card" aria-labelledby="address-heading">
-							<h3 id="address-heading">{t('contact.address')}</h3>
+							<h3 id="address-heading" className="card-heading">{t('contact.address')}</h3>
 							<address>
 								{t('address.line1')}
 							</address>
 
-							<div className="map-wrapper" style={{ marginTop: '0.75rem' }}>
+							<div className="map-wrapper">
 								<iframe
 									title={t('contact.mapTitle')}
 									src={mapSrc}
@@ -87,8 +87,7 @@ export function Contact(_: ContactProps) {
 									allowFullScreen
 								/>
 							</div>
-
-							<p style={{ marginTop: '.6rem' }}>
+							<p className="map-cta-btn">
 								<a
 									className="cta-btn"
 									href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
