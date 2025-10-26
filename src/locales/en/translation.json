@@ -1,0 +1,86 @@
+{
+    "brand": "PatinaWilla",
+    "brandTagline": "Upholstery & restoration in Ulvila",
+    "nav": {
+        "services": "Services",
+        "portfolio": "Work samples",
+        "about": "About",
+        "contact": "Contact"
+    },
+    "theme": {
+        "switchToLight": "Switch to light mode",
+        "switchToDark": "Switch to dark mode"
+    },
+    "header": {
+        "languageToggle": "Switch to Finnish"
+    },
+    "home": {
+        "heading": "Professional upholstery services",
+        "sub": "High-quality upholstery and restoration services for businesses and private clients.",
+        "cta": "Contact Us"
+    },
+    "services": {
+        "title": "Services",
+        "list": [
+            {
+                "title": "Upholstery",
+                "desc": "Reupholstering and surface finishing for furniture."
+            },
+            {
+                "title": "Restoration",
+                "desc": "Furniture repair and restoration."
+            },
+            {
+                "title": "Textiles",
+                "desc": "Interior textiles, cushions and tailored work."
+            },
+            {
+                "title": "Commercial clients",
+                "desc": "Hotels, restaurants and public spaces."
+            }
+        ]
+    },
+    "portfolio": {
+        "title": "Work samples",
+        "loadFailed": "Failed to load images.",
+        "retry": "Retry",
+        "prev": "Previous image",
+        "next": "Next image",
+        "openLarge": "Open large",
+        "close": "Close"
+    },
+    "about": {
+        "title": "About",
+        "p": "Tarja is specialized in a wide range of upholstery and restoration work. With decades of experience and top-quality materials, the workmanship is guaranteed.",
+        "ownerAlt": "Company owner"
+    },
+    "contact": {
+        "title": "Contact details",
+        "contact": "Contact",
+        "email": "Email",
+        "phone": "Phone",
+        "social": "Social media",
+        "openingHours": "Opening hours",
+        "address": "Address",
+        "openInMaps": "Open in Google Maps",
+        "openMapsLabel": "Open in Google Maps in a new tab",
+        "mapTitle": "Map: Friitalantie 11 C 4, Ulvila"
+    },
+    "hours": {
+        "Monday": "Monday",
+        "Tuesday": "Tuesday",
+        "Wednesday": "Wednesday",
+        "Thursday": "Thursday",
+        "Friday": "Friday",
+        "Saturday": "Saturday",
+        "Sunday": "Sunday",
+        "Closed": "Closed"
+    },
+    "footer": {
+        "partners": "Partners",
+        "copyright": "© {{year}} PatinaWilla. All rights reserved."
+    },
+    "address": {
+        "line1": "Friitalantie 11 C 4, 28400 Ulvila"
+    }
+}

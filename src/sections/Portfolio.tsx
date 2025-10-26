@@ -3,32 +3,30 @@ import entrepreneurPhoto from '../assets/images/ui/entrepreneur.jpg';
 import { useS3Gallery } from '../lib/useS3Gallery';
 import { useState, useEffect, useRef } from 'react';
 import { useMediaQuery } from '../lib/useMediaQuery';
-
-interface AboutPortfolioProps { language: 'fi' | 'en'; }
+import { useTranslation } from 'react-i18next';
 
 // This file hosts both Portfolio and About sections to keep bundle small.
-export function About({ language }: AboutPortfolioProps) {
+export function About() {
+	const { t } = useTranslation();
 	return (
 		<section id="about" aria-labelledby="about-heading">
 			<div className="container about-wrapper">
 				<div>
-					<h2 id="about-heading">{language === 'fi' ? 'Meistä' : 'About'}</h2>
-					<p>{language === 'fi'
-						? 'Tarja on erikoistunut moninaisiin verhoilu- ja entisöintitöihin. Usean vuosikymmenen kokemuksella ja laadukkaimmilla materiaaleilla työn laatu on taattu.'
-						: 'Tarja specializes in various upholstery and restoration work. With decades of experience and the highest quality materials, the quality of the work is guaranteed.'}
-					</p>
+					<h2 id="about-heading">{t('about.title')}</h2>
+					<p>{t('about.p')}</p>
 				</div>
 				<div className="about-photo">
-					<img src={entrepreneurPhoto} alt={language === 'fi' ? 'Yrityksen omistaja' : 'Company owner'} />
+					<img src={entrepreneurPhoto} alt={t('about.ownerAlt')} />
 				</div>
 			</div>
 		</section>
 	);
 }
 
-export interface PortfolioProps { language: 'fi' | 'en'; }
+export interface PortfolioProps { }
 
-	export function Portfolio({ language }: PortfolioProps) {
+export function Portfolio() {
+	const { t } = useTranslation();
 	const { items, loading, error, retry } = useS3Gallery({ bucket: 'patinawilla-gallery', region: 'eu-north-1', limit: 12 });
 	// Responsive: determine if viewport is mobile width
 	const isMobile = useMediaQuery('(max-width: 760px)');
@@ -86,11 +84,11 @@ export interface PortfolioProps { language: 'fi' | 'en'; }
 	return (
 		<section id="portfolio" aria-labelledby="portfolio-heading" className="alt">
 			<div className="container">
-				<h2 id="portfolio-heading">{language === 'fi' ? 'Työnäytteitä' : 'Work samples'}</h2>
+				<h2 id="portfolio-heading">{t('portfolio.title')}</h2>
 				{error && (
 					<p role="alert" style={{ color: '#b00' }}>
-						{language === 'fi' ? 'Kuvien lataus epäonnistui.' : 'Failed to load images.'}
-						<button onClick={retry} className="toggle-btn" style={{ marginLeft: '.75rem' }}>{language === 'fi' ? 'Yritä uudelleen' : 'Retry'}</button>
+						{t('portfolio.loadFailed')}
+						<button onClick={retry} className="toggle-btn" style={{ marginLeft: '.75rem' }}>{t('portfolio.retry')}</button>
 					</p>
 				)}
 				<div className="carousel" aria-live="polite">
@@ -98,7 +96,7 @@ export interface PortfolioProps { language: 'fi' | 'en'; }
 						<button
 							className="carousel-btn carousel-btn--prev toggle-btn"
 							type="button"
-							aria-label={language === 'fi' ? 'Edellinen kuva' : 'Previous image'}
+							aria-label={t('portfolio.prev')}
 							onClick={() => cycle(-1)}
 						>
 							←
@@ -106,7 +104,7 @@ export interface PortfolioProps { language: 'fi' | 'en'; }
 						<button
 							className="carousel-btn carousel-btn--next toggle-btn"
 							type="button"
-							aria-label={language === 'fi' ? 'Seuraava kuva' : 'Next image'}
+							aria-label={t('portfolio.next')}
 							onClick={() => cycle(1)}
 						>
 							→
@@ -122,7 +120,7 @@ export interface PortfolioProps { language: 'fi' | 'en'; }
 								key={img.key}
 								className="portfolio-item"
 								type="button"
-								aria-label={language === 'fi' ? `${img.alt} – avaa isona` : `${img.alt} – open large view`}
+								aria-label={`${img.alt} – ${t('portfolio.openLarge')}`}
 								onClick={() => openLightbox(img.key)}
 							>
 								<img src={img.url} alt={img.alt} loading="lazy" />
@@ -140,7 +138,7 @@ export interface PortfolioProps { language: 'fi' | 'en'; }
 								tabIndex={-1}
 								className="lightbox-img"
 							/>
-							<button type="button" className="toggle-btn lightbox-close" onClick={closeLightbox} aria-label={language === 'fi' ? 'Sulje' : 'Close'}>×</button>
+							<button type="button" className="toggle-btn lightbox-close" onClick={closeLightbox} aria-label={t('portfolio.close')}>×</button>
 						</div>
 					</div>
 				)}

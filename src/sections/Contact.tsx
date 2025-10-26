@@ -1,43 +1,41 @@
 // Moved from routes/Contact.tsx
-interface ContactProps { language: 'fi' | 'en'; }
+import { useTranslation } from 'react-i18next';
 
-export function Contact({ language }: ContactProps) {
+interface ContactProps {}
+
+export function Contact(_: ContactProps) {
+	const { t } = useTranslation();
 	const hours = [
-		{ fi: 'Maanantai', en: 'Monday', time: '10:00–17:00' },
-		{ fi: 'Tiistai', en: 'Tuesday', time: '10:00–17:00' },
-		{ fi: 'Keskiviikko', en: 'Wednesday', time: '10:00–17:00' },
-		{ fi: 'Torstai', en: 'Thursday', time: '10:00–17:00' },
-		{ fi: 'Perjantai', en: 'Friday', time: '10:00–17:00' },
-		{ fi: 'Lauantai', en: 'Saturday', time: language === 'fi' ? 'Suljettu' : 'Closed' },
-		{ fi: 'Sunnuntai', en: 'Sunday', time: language === 'fi' ? 'Suljettu' : 'Closed' },
+		{ dayKey: 'hours.Monday', time: '10:00–17:00' },
+		{ dayKey: 'hours.Tuesday', time: '10:00–17:00' },
+		{ dayKey: 'hours.Wednesday', time: '10:00–17:00' },
+		{ dayKey: 'hours.Thursday', time: '10:00–17:00' },
+		{ dayKey: 'hours.Friday', time: '10:00–17:00' },
+		{ dayKey: 'hours.Saturday', time: t('hours.Closed') },
+		{ dayKey: 'hours.Sunday', time: t('hours.Closed') },
 	];
 
-	const heading = language === 'fi' ? 'Yhteystiedot' : 'Contact details';
-	const openingHeading = language === 'fi' ? 'Aukioloajat' : 'Opening hours';
-	const addressHeading = language === 'fi' ? 'Osoite' : 'Address';
-
-	// Use a simple Google Maps embed via query string (no API key required).
 	const mapQuery = encodeURIComponent('Friitalantie 11 4, 28400 Ulvila');
 	const mapSrc = `https://www.google.com/maps?q=${mapQuery}&hl=fi&z=15&output=embed`;
 
 	return (
 		<section id="contact" aria-labelledby="contact-heading">
 			<div className="container">
-				<h2 id="contact-heading">{heading}</h2>
+				<h2 id="contact-heading">{t('contact.title')}</h2>
 
 				<div className="contact-columns">
 					{/* Consolidated contact card: email, phone, social */}
-					<div className="contact-card contact-info-card" aria-label={language === 'fi' ? 'Yhteystiedot' : 'Contact'}>
-						<h3>{language === 'fi' ? 'Yhteystiedot' : 'Contact'}</h3>
+					<div className="contact-card contact-info-card" aria-label={t('contact.contact')}>
+						<h3>{t('contact.contact')}</h3>
 						<p>
-							<strong>{language === 'fi' ? 'Sähköposti' : 'Email'}: </strong>
+							<strong>{t('contact.email')}: </strong>
 							<a href="mailto:patinawilla@gmail.com">patinawilla@gmail.com</a>
 						</p>
 						<p>
-							<strong>{language === 'fi' ? 'Puhelin' : 'Phone'}: </strong>
+							<strong>{t('contact.phone')}: </strong>
 							<a href="tel:0407554691">0407554691</a>
 						</p>
-						<p className="social-links" aria-label={language === 'fi' ? 'Sosiaalinen media' : 'Social media'}>
+						<p className="social-links" aria-label={t('contact.social')}>
 							<a className="social-link" href="https://fi-fi.facebook.com/PatinaWilla-837301046326307/" target="_blank" rel="noopener noreferrer">
 								<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
 									<path fill="currentColor" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.99 3.657 9.128 8.438 9.878v-6.99H7.898v-2.888h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.242 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.888h-2.33v6.99C18.343 21.128 22 16.99 22 12z" />
@@ -56,12 +54,12 @@ export function Contact({ language }: ContactProps) {
 
 					{/* Opening hours as its own card for consistent layout */}
 					<div className="contact-card hours-card" aria-labelledby="opening-hours-heading">
-						<h3 id="opening-hours-heading">{openingHeading}</h3>
+						<h3 id="opening-hours-heading">{t('contact.openingHours')}</h3>
 						<table className="hours-table" aria-hidden={false}>
 							<tbody>
 								{hours.map((h) => (
-									<tr key={h.en}>
-										<td className="day">{language === 'fi' ? h.fi : h.en}</td>
+									<tr key={h.dayKey}>
+										<td className="day">{t(h.dayKey)}</td>
 										<td className="time">{h.time}</td>
 									</tr>
 								))}
@@ -71,21 +69,21 @@ export function Contact({ language }: ContactProps) {
 
 						{/* Address/map card: moved into the grid so it can sit beside other cards on wide screens */}
 						<div className="contact-card map-card" aria-labelledby="address-heading">
-							<h3 id="address-heading">{addressHeading}</h3>
+							<h3 id="address-heading">{t('contact.address')}</h3>
 							<address>
-								Friitalantie 11 C 4, 28400 Ulvila
+								{t('address.line1')}
 							</address>
 
 							<div className="map-wrapper" style={{ marginTop: '0.75rem' }}>
 								<iframe
-									title={language === 'fi' ? 'Kartta: Friitalantie 11 C 4, Ulvila' : 'Map: Friitalantie 11 C 4, Ulvila'}
+									title={t('contact.mapTitle')}
 									src={mapSrc}
 									width="100%"
 									height={300}
 									style={{ border: 0 }}
 									loading="lazy"
 									referrerPolicy="no-referrer-when-downgrade"
-									aria-label={language === 'fi' ? 'Kartta osoitteeseen Friitalantie 11 4' : 'Map to Friitalantie 11 4'}
+									aria-label={t('contact.mapTitle')}
 									allowFullScreen
 								/>
 							</div>
@@ -96,9 +94,9 @@ export function Contact({ language }: ContactProps) {
 									href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
 									target="_blank"
 									rel="noopener noreferrer"
-									aria-label={language === 'fi' ? 'Avaa Google Mapsissa uudessa välilehdessä' : 'Open in Google Maps in a new tab'}
+									aria-label={t('contact.openMapsLabel')}
 								>
-									{language === 'fi' ? 'Avaa Google Mapsissa' : 'Open in Google Maps'}
+									{t('contact.openInMaps')}
 								</a>
 							</p>
 						</div>

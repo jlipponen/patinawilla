@@ -1,16 +1,18 @@
 import logosPng from '../assets/images/ui/logos.png';
 import svmlLogo from '../assets/images/ui/svml-jasen-logo.png';
+import { useTranslation } from 'react-i18next';
 
 export function Footer() {
+	const { t } = useTranslation();
 	return (
 		<footer>
 			<div className="container">
-				<h2 style={{ marginTop: 0, fontSize: '1.35rem' }}>Yhteistyössä / Partners</h2>
-				<div className="logos" aria-label="Partner logos">
+				<h2 style={{ marginTop: 0, fontSize: '1.35rem' }}>{t('footer.partners')}</h2>
+				<div className="logos" aria-label={t('footer.partners')}>
 					<img src={logosPng} alt="Vendor brand logos" style={{ maxHeight: '80px', width: 'auto' }} />
 					<img src={svmlLogo} alt="Suomen Verhoilijamestarien Liitto jäsenlogo" style={{ maxHeight: '80px', width: 'auto' }} />
 				</div>
-				<small>© {new Date().getFullYear()} PatinaWilla. Kaikki oikeudet pidätetään.</small>
+				<small>{t('footer.copyright', { year: new Date().getFullYear() })}</small>
 			</div>
 		</footer>
 	);
