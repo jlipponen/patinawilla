@@ -29,3 +29,7 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
+
+# AWS CLI installation files
+aws/
+awscliv2.zip
