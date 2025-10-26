@@ -118,8 +118,10 @@ main { margin-top: 5.25rem; }
 
 .brand-block {
     display: flex;
-    flex-direction: column;
-    gap: .25rem;
+    flex-direction: row;
+    align-items: baseline;
+    gap: .5rem;
+    white-space: nowrap; /* keep brand and tagline on a single line */
 }
 
 .brand {
