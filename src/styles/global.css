@@ -115,7 +115,7 @@ header {
 
 /* Reserve space for the fixed header so document content doesn't sit under it */
 main {
-  margin-top: 5.25rem;
+  margin-top: 4.0rem;
 }
 
 [data-theme="dark"] header {
@@ -819,12 +819,12 @@ button {
     gap: 0.45rem;
   }
   .toolbar .toggle-btn {
-    padding: 0.35rem 0.6rem;
+    padding: 0.25rem 0.5rem;
     font-size: 0.65rem;
     border-radius: 0.32rem;
   }
   .toolbar .toggle-btn svg {
-    width: 12px;
+    width: 10px;
     height: 12px;
   }
   .header-inner {
