@@ -822,6 +822,12 @@ button {
    ========================= */
 /* --- Mobile nav, header, hero, grid, about, contact, footer, etc. --- */
 @media (max-width: 760px) {
+  body {
+    background-size: auto auto;
+    background-position-y: top;
+    background-position-x: center;
+    background-repeat: repeat;
+  }
   header {
     padding-top: 0.25rem;
     padding-bottom: 0.5rem;
@@ -829,8 +835,8 @@ button {
     padding-right: 0.25rem;
   }
   .brand {
-    font-size: 1.35rem;
-    letter-spacing: 0.5px;
+    font-size: 1.55rem;
+    letter-spacing: 0.75px;
     max-width: 70vw;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -901,6 +907,7 @@ button {
   }
   .hero-sub {
     font-size: 0.75rem;
+    max-width: 60vw;
   }
   .container {
     padding-left: 1rem;
