@@ -1,0 +1,86 @@
+{
+    "brand": "PatinaWilla",
+    "brandTagline": "Verhoilu ja entisöinti Ulvilassa",
+    "nav": {
+        "services": "Palvelut",
+        "portfolio": "Työnäytteitä",
+        "about": "Yrittäjä",
+        "contact": "Yhteystiedot"
+    },
+    "theme": {
+        "switchToLight": "Vaihda vaaleaan tilaan",
+        "switchToDark": "Vaihda tummaan tilaan"
+    },
+    "header": {
+        "languageToggle": "Vaihda englantiin"
+    },
+    "home": {
+        "heading": "Verhoilupalvelut ammattitaidolla",
+        "sub": "Laadukkaat verhoilu- ja entisöintipalvelut yrityksille ja yksityisasiakkaille.",
+        "cta": "Ota yhteyttä"
+    },
+    "services": {
+        "title": "Palvelut",
+        "list": [
+            {
+                "title": "Verhoilu",
+                "desc": "Kalusteiden uudelleenverhoilu ja pintakäsittely."
+            },
+            {
+                "title": "Entisöinti",
+                "desc": "Huonekalujen kunnostus ja entisöinti."
+            },
+            {
+                "title": "Tekstiilityöt",
+                "desc": "Sisustustekstiilit, tyynyt ja mittatilaustyöt."
+            },
+            {
+                "title": "Yritysasiakkaat",
+                "desc": "Hotellit, ravintolat ja julkiset tilat."
+            }
+        ]
+    },
+    "portfolio": {
+        "title": "Työnäytteitä",
+        "loadFailed": "Kuvien lataus epäonnistui.",
+        "retry": "Yritä uudelleen",
+        "prev": "Edellinen kuva",
+        "next": "Seuraava kuva",
+        "openLarge": "Suurenna",
+        "close": "Sulje"
+    },
+    "about": {
+        "title": "Yrittäjä",
+        "p": "Tarja on erikoistunut moninaisiin verhoilu- ja entisöintitöihin. Usean vuosikymmenen kokemuksella ja laadukkaimmilla materiaaleilla työn laatu on taattu.",
+        "ownerAlt": "Yrittäjä"
+    },
+    "contact": {
+        "title": "Yhteystiedot",
+        "contact": "Yhteystiedot",
+        "email": "Sähköposti",
+        "phone": "Puhelin",
+        "social": "Sosiaalinen media",
+        "openingHours": "Aukioloajat",
+        "address": "Osoite",
+        "openInMaps": "Avaa Google Mapsissa",
+        "openMapsLabel": "Avaa Google Mapsissa uudessa välilehdessä",
+        "mapTitle": "Kartta: Friitalantie 11 C 4, Ulvila"
+    },
+    "hours": {
+        "Monday": "Maanantai",
+        "Tuesday": "Tiistai",
+        "Wednesday": "Keskiviikko",
+        "Thursday": "Torstai",
+        "Friday": "Perjantai",
+        "Saturday": "Lauantai",
+        "Sunday": "Sunnuntai",
+        "Closed": "Suljettu"
+    },
+    "footer": {
+        "partners": "Yhteistyössä / Partners",
+        "copyright": "© {{year}} PatinaWilla. Kaikki oikeudet pidätetään."
+    },
+    "address": {
+        "line1": "Friitalantie 11 C 4, 28400 Ulvila"
+    }
+}
