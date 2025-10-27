@@ -1,7 +1,8 @@
-# Patinawilla React + TypeScript + Vite
+# PatinaWilla website
 
-Simple hello-world scaffold.
+A modern, responsive marketing site for PatinaWilla, an upholstery and restoration company based in Ulvila. The site showcases services, portfolio, and company information with a clean and professional design.
 
+# Development
 ## Scripts
 - `npm run dev` start dev server
 - `npm run build` production build
