@@ -3,7 +3,7 @@ interface ServiceCardProps {
 	description: string;
 }
 
-export function ServiceCard({ title, description }: ServiceCardProps) {
+export function ServiceCard({ title, description }: Readonly<ServiceCardProps>) {
 	return (
 		<article className="service-card">
 			<h3>{title}</h3>

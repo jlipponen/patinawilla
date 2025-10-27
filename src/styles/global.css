@@ -598,20 +598,12 @@ section h2::after {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
   outline: none;
 }
-.lightbox {
-  overflow: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .lightbox-close {
   background: rgba(0, 0, 0, 0.55);
   color: #fff;
   padding: 0.4rem 0.7rem;
   line-height: 1;
   border-radius: 0.4rem;
-}
-.lightbox-close {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
@@ -639,7 +631,7 @@ section h2::after {
 }
 
 [data-theme="dark"] .contact-card {
-  background: linear-gradient(135deg, rgba(40, 35, 32, 0.9), rgba(35, 30, 27, 0.8));
+  background: linear-gradient(135deg, rgba(35, 35, 32, 0.9), rgba(30, 30, 27, 0.8));
   border-color: var(--linen-300);
   backdrop-filter: blur(12px);
 }
@@ -653,10 +645,6 @@ section h2::after {
 .contact-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 24px var(--linen-accent), 0 0 0 1px var(--color-accent);
-}
-
-[data-theme="dark"] .contact-card {
-  background: #1c1c1c;
 }
 
 /* Opening hours table inside contact card */
@@ -840,9 +828,6 @@ button {
     padding-left: 0.25rem;
     padding-right: 0.25rem;
   }
-  .header-inner {
-    gap: 0.75rem;
-  }
   .brand {
     font-size: 1.35rem;
     letter-spacing: 0.5px;
@@ -863,7 +848,7 @@ button {
   }
   .header-inner {
     align-items: center;
-    gap: 1rem;
+    gap: 0rem;
     flex-wrap: wrap;
     position: relative;
   }
@@ -882,11 +867,6 @@ button {
   .toolbar .toggle-btn svg {
     width: 8px;
     height: 12px;
-  }
-  .header-inner {
-    align-items: center;
-    gap: 0;
-    flex-wrap: wrap;
   }
   nav {
     position: static;
@@ -908,29 +888,11 @@ button {
   .brand-block {
     flex: 1 1 auto;
     order: 1;
+    gap: 0.25rem;
   }
   .toolbar {
     flex: 0 0 auto;
     order: 1;
-  }
-  .brand {
-    font-size: 1.35rem;
-    letter-spacing: 0.5px;
-    max-width: 70vw;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .brand-tagline {
-    font-size: 0.38rem;
-    letter-spacing: 1px;
-    max-width: 60vw;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .brand-block {
-    gap: 0.25rem;
   }
   .hero {
     padding: 5.5rem 0 4rem;

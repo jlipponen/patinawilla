@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react';
 
 export function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState<boolean>(() => {
-    if (typeof window === 'undefined') return false;
-    return window.matchMedia(query).matches;
+    if (typeof globalThis === 'undefined') return false;
+    return globalThis.matchMedia(query).matches;
   });
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const mql = window.matchMedia(query);
+    if (typeof globalThis === 'undefined') return;
+    const mql = globalThis.matchMedia(query);
     const handler = () => setMatches(mql.matches);
     handler();
     mql.addEventListener('change', handler);

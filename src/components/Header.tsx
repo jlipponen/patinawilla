@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import useMediaQuery from '../lib/useMediaQuery';
-import { FaLightbulb, FaRegLightbulb } from 'react-icons/fa';
-import { FaGlobe } from 'react-icons/fa';
+import { FaLightbulb, FaRegLightbulb, FaGlobe } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 
 type NavItem = { id: string; key: string };
@@ -14,14 +13,14 @@ const navItems: NavItem[] = [
 
 interface HeaderProps { onLanguageChange(lang: 'fi' | 'en'): void; }
 
-export function Header({ onLanguageChange }: HeaderProps) {
+export function Header({ onLanguageChange }: Readonly<HeaderProps>) {
     const { t, i18n } = useTranslation();
     const [dark, setDark] = useState(false);
     const [scrollY, setScrollY] = useState(0);
     const isMobile = useMediaQuery('(max-width:760px)');
 
     useEffect(() => {
-        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
     }, [dark]);
 
     useEffect(() => {

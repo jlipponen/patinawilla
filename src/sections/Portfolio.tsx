@@ -78,7 +78,9 @@ export function Portfolio() {
 		};
 	}, [activeKey]);
 
-	const visibleItems = !items.length ? [] : Array.from({ length: Math.min(VISIBLE, items.length) }, (_, idx) => items[(index + idx) % items.length]);
+	const visibleItems = items.length > 0
+		? Array.from({ length: Math.min(VISIBLE, items.length) }, (_, idx) => items[(index + idx) % items.length])
+		: [];
 	const activeItem = items.find(i => i.key === activeKey) || null;
 
 	return (
@@ -114,7 +116,9 @@ export function Portfolio() {
 						className="carousel-track"
 						style={{ gridTemplateColumns: `repeat(${VISIBLE}, minmax(0,1fr))` }}
 					>
-						{loading && items.length === 0 && Array.from({ length: VISIBLE }).map((_, i) => <div key={i} className="portfolio-item" aria-hidden="true" />)}
+						{loading && items.length === 0 && Array.from({ length: VISIBLE }).map(() => (
+							<div className="portfolio-item" aria-hidden="true" />
+						))}
 						{!loading && visibleItems.map(img => (
 							<button
 								key={img.key}

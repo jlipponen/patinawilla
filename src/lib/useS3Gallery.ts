@@ -42,7 +42,7 @@ function buildBaseUrl(bucket: string, region: string): string {
 }
 
 function sanitizeAlt(alt?: string, key?: string): string {
-  const base = (alt || key || '').replace(/[-_]+/g, ' ').replace(/\.[^.]+$/, '').trim();
+  const base = (alt || key || '').replaceAll(/[-_]+/g, ' ').replace(/\.[^.]+$/, '').trim();
   return base.length ? base : 'Gallery image';
 }
 
@@ -53,7 +53,10 @@ export function useS3Gallery({ bucket, region = 'eu-north-1', prefix, limit, cac
 
   const baseOverride = (import.meta.env.VITE_GALLERY_BASE_URL as string | undefined)?.trim();
   const baseUrl = baseOverride || buildBaseUrl(bucket, region);
-  const listUrl = `${baseUrl}?list-type=2${prefix ? `&prefix=${encodeURIComponent(prefix)}` : ''}`; // ListObjectsV2
+  let listUrl = baseUrl + '?list-type=2';
+  if (prefix) {
+    listUrl += '&prefix=' + encodeURIComponent(prefix);
+  }
 
   const CACHE_KEY = `s3Gallery:${bucket}:${prefix || ''}`;
   const ttlMinutes = typeof cacheMinutes === 'number' ? cacheMinutes : (Number(import.meta.env.VITE_GALLERY_CACHE_MINUTES) || 360);
@@ -70,10 +73,11 @@ export function useS3Gallery({ bucket, region = 'eu-north-1', prefix, limit, cac
         const mapped: GalleryItem[] = contents.map(c => {
           const key = c.getElementsByTagName('Key')[0]?.textContent || '';
           if (!key || !/\.(jpe?g|png|gif|webp|avif)$/i.test(key)) return null;
+          const url = baseUrl + '/' + encodeURIComponent(key);
           return {
             key,
             alt: sanitizeAlt(undefined, key),
-            url: `${baseUrl}/${encodeURIComponent(key)}`
+            url
           };
         }).filter(Boolean) as GalleryItem[];
         const finalItems = limit ? mapped.slice(0, limit) : mapped;
@@ -90,28 +94,37 @@ export function useS3Gallery({ bucket, region = 'eu-north-1', prefix, limit, cac
   };
 
   const load = () => {
-    setLoading(true); setError(null);
-    // Attempt cache read
-    if (!ignoreCache) {
-      try {
-        if (typeof sessionStorage !== 'undefined') {
-          const raw = sessionStorage.getItem(CACHE_KEY);
-          if (raw) {
-            const parsed = JSON.parse(raw) as { ts?: number; items?: GalleryItem[] };
-            if (parsed.ts && parsed.items && Array.isArray(parsed.items)) {
-              const ageMinutes = (Date.now() - parsed.ts) / 60000;
-              if (ageMinutes < ttlMinutes) {
-                setItems(limit ? parsed.items.slice(0, limit) : parsed.items);
-                setLoading(false);
-                return; // served from cache
-              }
-            }
-          }
-        }
-      } catch { /* ignore malformed cache */ }
+    setLoading(true);
+    setError(null);
+
+    if (!ignoreCache && tryLoadFromCache()) {
+        return; // served from cache
     }
+
     fetchAndCache();
   };
+
+  const tryLoadFromCache = (): boolean => {
+    try {
+        if (typeof sessionStorage !== 'undefined') {
+            const raw = sessionStorage.getItem(CACHE_KEY);
+            if (raw) {
+                const parsed = JSON.parse(raw) as { ts?: number; items?: GalleryItem[] };
+                if (parsed.ts && parsed.items && Array.isArray(parsed.items)) {
+                    const ageMinutes = (Date.now() - parsed.ts) / 60000;
+                    if (ageMinutes < ttlMinutes) {
+                        setItems(limit ? parsed.items.slice(0, limit) : parsed.items);
+                        setLoading(false);
+                        return true;
+                    }
+                }
+            }
+        }
+    } catch {
+      /* ignore malformed cache */
+    }
+    return false;
+};
 
   useEffect(load, [bucket, region, prefix, baseOverride, limit, ttlMinutes]);
 
