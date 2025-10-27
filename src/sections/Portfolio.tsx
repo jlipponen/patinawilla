@@ -116,8 +116,8 @@ export function Portfolio() {
 						className="carousel-track"
 						style={{ gridTemplateColumns: `repeat(${VISIBLE}, minmax(0,1fr))` }}
 					>
-						{loading && items.length === 0 && Array.from({ length: VISIBLE }).map(() => (
-							<div className="portfolio-item" aria-hidden="true" />
+						{loading && items.length === 0 && Array.from({ length: VISIBLE }).map((_, idx) => (
+							<div className="portfolio-item" aria-hidden="true" key={idx} />
 						))}
 						{!loading && visibleItems.map(img => (
 							<button

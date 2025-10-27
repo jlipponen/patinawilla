@@ -851,6 +851,7 @@ button {
     gap: 0rem;
     flex-wrap: wrap;
     position: relative;
+    justify-content: space-between;
   }
   .toolbar {
     position: absolute;
@@ -858,6 +859,8 @@ button {
     right: 0;
     z-index: 2;
     gap: 0.35rem;
+    flex: 0 0 auto;
+    order: 1;
   }
   .toolbar .toggle-btn {
     padding: 0.2rem 0.4rem;
@@ -890,10 +893,6 @@ button {
     order: 1;
     gap: 0.25rem;
   }
-  .toolbar {
-    flex: 0 0 auto;
-    order: 1;
-  }
   .hero {
     padding: 5.5rem 0 4rem;
   }
@@ -906,9 +905,6 @@ button {
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-  .header-inner {
-    justify-content: space-between;
   }
   main {
     margin-top: 0.5rem;
