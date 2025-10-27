@@ -48,30 +48,10 @@ if [ ! -e "$SOURCE_PATH" ]; then
     exit 1
 fi
 
-# Check existence of required environment variables
-if [ -z "$AWS_S3_ACCESS_KEY" ]; then
-    echo "Error: Required environment variable AWS_S3_ACCESS_KEY is not set."
-    exit 1
-fi
-
-if [ -z "$AWS_S3_SECRET_KEY" ]; then
-    echo "Error: Required environment variable AWS_S3_SECRET_KEY is not set."
-    exit 1
-fi
-
-if [ -z "$AWS_DEFAULT_REGION" ]; then
-    echo "Error: Required environment variable AWS_DEFAULT_REGION is not set."
-    exit 1
-fi
-
 # Install AWS CLI if not already installed
 bash "$(dirname "$0")/install-aws-cli.sh"
 
-aws configure set aws_access_key_id $AWS_S3_ACCESS_KEY
-aws configure set aws_secret_access_key $AWS_S3_SECRET_KEY
-aws configure set default.region $AWS_DEFAULT_REGION
-
-# Check if bucket exists
+# Verify the target bucket exists
 if ! aws s3api head-bucket --bucket "$S3_BUCKET_NAME" 2>/dev/null; then
     echo "Error: S3 bucket $S3_BUCKET_NAME does not exist or you don't have access to it."
     exit 1
