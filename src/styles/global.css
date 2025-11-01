@@ -448,6 +448,7 @@ section h2::after {
   font-size: 0.95rem;
   line-height: 1.6;
   opacity: 0.9;
+  color: var(--color-accent);
 }
 
 .card-heading {
@@ -833,20 +834,32 @@ section h2::after {
 }
 
 footer {
-  margin-top: 4rem;
-  padding: 3rem 0 2.5rem;
+  margin-top: 0rem;
+  padding: 1.0rem 0 0.5rem;
   background: var(--color-footer-bg);
   color: var(--color-footer-text);
 }
+
+footer h2 {
+  margin-top: 0;
+  font-size: 1.35rem;
+}
+
 footer .logos {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
   align-items: center;
 }
+
+footer .logos img {
+  max-height: 100px;
+  width: auto;
+}
+
 footer small {
   display: block;
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-size: 0.75rem;
   opacity: 0.8;
 }
@@ -1061,5 +1074,9 @@ button {
   }
   footer .logos {
     justify-content: center;
+  }
+  footer .logos img {
+    max-height: 80px;
+    width: auto;
   }
 }
