@@ -733,12 +733,12 @@ section h2::after {
 }
 .hours-table .day {
   padding: 0.4rem 0.6rem;
-  color: var(--color-text);
+  color: var(--color-accent);
   width: 55%;
 }
 .hours-table .time {
   padding: 0.4rem 0.6rem;
-  color: rgba(0, 0, 0, 0.75);
+  color: var(--color-accent);
   text-align: right;
   width: 45%;
 }
@@ -769,6 +769,7 @@ section h2::after {
 /* Map card specific tweaks */
 .map-card {
   padding-bottom: 0.75rem;
+  color: var(--color-accent);
 }
 .map-card .map-wrapper {
   border-radius: 0.5rem;
@@ -800,6 +801,8 @@ section h2::after {
   display: block;
   flex-shrink: 0;
   color: currentColor;
+  width: 20px;
+  height: 20px;
 }
 .social-link span {
   font-size: 0.95rem;
