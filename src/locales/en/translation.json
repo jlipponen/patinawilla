@@ -44,8 +44,11 @@
         "title": "Work samples",
         "loadFailed": "Failed to load images.",
         "retry": "Retry",
-        "prev": "Previous image",
-        "next": "Next image",
+        "prev": "Previous picture",
+        "next": "Next picture",
+        "goToSlide": "Go to picture {{index}}",
+        "galleryLabel": "Work samples",
+        "loading": "Loading work samples...",
         "openLarge": "Open large",
         "close": "Close"
     },

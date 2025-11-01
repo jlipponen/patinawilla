@@ -46,6 +46,9 @@
         "retry": "Yritä uudelleen",
         "prev": "Edellinen kuva",
         "next": "Seuraava kuva",
+        "goToSlide": "Siirry kuvaan {{index}}",
+        "galleryLabel": "Työnäytteitä",
+        "loading": "Ladataan työnäytteitä...",
         "openLarge": "Suurenna",
         "close": "Sulje"
     },
