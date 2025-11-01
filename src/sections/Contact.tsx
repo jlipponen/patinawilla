@@ -35,6 +35,14 @@ export function Contact(_: ContactProps) {
 							<span className="card-subheading">{t('contact.phone')}:</span>
 							<a href="tel:0407554691">0407554691</a>
 						</p>
+						<p>
+							<span className="card-subheading">{t('contact.company')}:</span>
+							<a>PatinaWilla Oy</a>
+						</p>
+						<p>
+							<span className="card-subheading">{t('contact.business-id')}:</span>
+							<a>3575586-8</a>
+						</p>
 						<p className="social-links" aria-label={t('contact.social')}>
 							<a className="social-link" href="https://fi-fi.facebook.com/PatinaWilla-837301046326307/" target="_blank" rel="noopener noreferrer">
 								<FaFacebook aria-hidden="true" />

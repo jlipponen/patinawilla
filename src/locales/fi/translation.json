@@ -60,6 +60,8 @@
     "contact": {
         "title": "Yhteystiedot",
         "contact": "Yhteystiedot",
+        "company": "Yrityksen nimi",
+        "business-id": "Y-tunnus",
         "email": "Sähköposti",
         "phone": "Puhelin",
         "social": "Sosiaalinen media",

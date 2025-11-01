@@ -60,6 +60,8 @@
     "contact": {
         "title": "Contact details",
         "contact": "Contact",
+        "company": "Company name",
+        "business-id": "Business ID",
         "email": "Email",
         "phone": "Phone",
         "social": "Social media",
