@@ -1,9 +1,15 @@
 // Moved from routes/Portfolio.tsx
 import entrepreneurPhoto from '../assets/images/ui/entrepreneur.jpg';
 import { useS3Gallery } from '../lib/useS3Gallery';
-import { useState, useEffect, useRef } from 'react';
-import { useMediaQuery } from '../lib/useMediaQuery';
 import { useTranslation } from 'react-i18next';
+import { useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Keyboard, A11y } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 // This file hosts both Portfolio and About sections to keep bundle small.
 export function About() {
@@ -28,60 +34,29 @@ export interface PortfolioProps { }
 export function Portfolio() {
 	const { t } = useTranslation();
 	const { items, loading, error, retry } = useS3Gallery({ bucket: 'patinawilla-gallery', region: 'eu-north-1', limit: 12 });
-	// Responsive: determine if viewport is mobile width
-	const isMobile = useMediaQuery('(max-width: 760px)');
-	const VISIBLE = isMobile ? 3 : 4; // number of thumbnails to render
-	const [index, setIndex] = useState(0);
-	const [activeKey, setActiveKey] = useState<string | null>(null);
-	const prevFocusRef = useRef<Element | null>(null);
-	const lightboxImgRef = useRef<HTMLImageElement | null>(null);
-	const bodyOverflowRef = useRef<string>('');
+	const [lightboxImage, setLightboxImage] = useState<{ url: string; alt: string } | null>(null);
 
-	useEffect(() => {
-		if (index > items.length - 1) setIndex(0);
-	}, [items, index]);
-
-	const cycle = (dir: 1 | -1) => {
-		if (!items.length) return;
-		setIndex(i => {
-			const max = items.length;
-			return (i + dir + max) % max;
-		});
-	};
-
-	const openLightbox = (key: string) => {
-		prevFocusRef.current = document.activeElement;
-		setActiveKey(key);
+	const openLightbox = (url: string, alt: string) => {
+		setLightboxImage({ url, alt });
+		document.body.style.overflow = 'hidden';
 	};
 
 	const closeLightbox = () => {
-		setActiveKey(null);
-		// restore scroll
-		if (bodyOverflowRef.current) document.body.style.overflow = bodyOverflowRef.current;
-		if (prevFocusRef.current instanceof HTMLElement) prevFocusRef.current.focus();
+		setLightboxImage(null);
+		document.body.style.overflow = '';
 	};
 
-	// key listener + scroll lock + focus management
+	// Close lightbox on Escape key
 	useEffect(() => {
-		if (!activeKey) return;
-		const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closeLightbox(); };
-		document.addEventListener('keydown', onKey);
-		// lock scroll
-		bodyOverflowRef.current = document.body.style.overflow;
-		document.body.style.overflow = 'hidden';
-		// focus image after render
-		requestAnimationFrame(() => { lightboxImgRef.current?.focus(); });
-		return () => {
-			document.removeEventListener('keydown', onKey);
-			// ensure cleanup if effect early
-			document.body.style.overflow = bodyOverflowRef.current;
+		const handleEscape = (e: KeyboardEvent) => {
+			if (e.key === 'Escape' && lightboxImage) {
+				closeLightbox();
+			}
 		};
-	}, [activeKey]);
-
-	const visibleItems = items.length > 0
-		? Array.from({ length: Math.min(VISIBLE, items.length) }, (_, idx) => items[(index + idx) % items.length])
-		: [];
-	const activeItem = items.find(i => i.key === activeKey) || null;
+		
+		window.addEventListener('keydown', handleEscape);
+		return () => window.removeEventListener('keydown', handleEscape);
+	}, [lightboxImage]);
 
 	return (
 		<section id="portfolio" aria-labelledby="portfolio-heading" className="alt">
@@ -93,56 +68,79 @@ export function Portfolio() {
 						<button onClick={retry} className="toggle-btn" style={{ marginLeft: '.75rem' }}>{t('portfolio.retry')}</button>
 					</p>
 				)}
-				<div className="carousel" aria-live="polite">
-					<div className="carousel-top-controls">
-						<button
-							className="carousel-btn carousel-btn--prev toggle-btn"
-							type="button"
-							aria-label={t('portfolio.prev')}
-							onClick={() => cycle(-1)}
-						>
-							←
-						</button>
-						<button
-							className="carousel-btn carousel-btn--next toggle-btn"
-							type="button"
-							aria-label={t('portfolio.next')}
-							onClick={() => cycle(1)}
-						>
-							→
-						</button>
+				
+				{loading && items.length === 0 && (
+					<div className="portfolio-loading" aria-live="polite">
+						{t('portfolio.loading', 'Loading gallery...')}
 					</div>
-					<div
-						className="carousel-track"
-						style={{ gridTemplateColumns: `repeat(${VISIBLE}, minmax(0,1fr))` }}
+				)}
+
+				{!loading && items.length > 0 && (
+					<Swiper
+						modules={[Navigation, Pagination, Keyboard, A11y]}
+						spaceBetween={12}
+						slidesPerView={3}
+						slidesPerGroup={1}
+						navigation
+						pagination={{ 
+							clickable: true,
+							dynamicBullets: true,
+						}}
+						keyboard={{
+							enabled: true,
+							onlyInViewport: true,
+						}}
+						breakpoints={{
+							760: { slidesPerView: 4, spaceBetween: 12, slidesPerGroup: 1 },
+						}}
+						a11y={{
+							enabled: true,
+							prevSlideMessage: t('portfolio.prev', 'Previous slide'),
+							nextSlideMessage: t('portfolio.next', 'Next slide'),
+							paginationBulletMessage: t('portfolio.goToSlide', 'Go to slide {{index}}'),
+						}}
+						watchOverflow={false}
+						className="portfolio-swiper"
+						loop={true}
+						grabCursor={true}
 					>
-						{loading && items.length === 0 && Array.from({ length: VISIBLE }).map((_, idx) => (
-							<div className="portfolio-item" aria-hidden="true" key={idx} />
+						{items.map(img => (
+							<SwiperSlide key={img.key}>
+								<button
+									className="portfolio-slide-button"
+									onClick={() => openLightbox(img.url, img.alt)}
+									aria-label={`${img.alt} – ${t('portfolio.openLarge', 'Click to enlarge')}`}
+									type="button"
+								>
+									<img src={img.url} alt={img.alt} loading="lazy" />
+								</button>
+							</SwiperSlide>
 						))}
-						{!loading && visibleItems.map(img => (
-							<button
-								key={img.key}
-								className="portfolio-item"
-								type="button"
-								aria-label={`${img.alt} – ${t('portfolio.openLarge')}`}
-								onClick={() => openLightbox(img.key)}
-							>
-								<img src={img.url} alt={img.alt} loading="lazy" />
-							</button>
-						))}
-					</div>
-				</div>
-				{activeItem && (
-					<div className="lightbox" role="dialog" aria-modal="true" aria-label={activeItem.alt} onClick={closeLightbox}>
+					</Swiper>
+				)}
+
+				{lightboxImage && (
+					<div 
+						className="lightbox" 
+						role="dialog" 
+						aria-modal="true" 
+						aria-label={lightboxImage.alt}
+						onClick={closeLightbox}
+					>
 						<div className="lightbox-inner" onClick={e => e.stopPropagation()}>
 							<img
-								ref={lightboxImgRef}
-								src={activeItem.url}
-								alt={activeItem.alt}
-								tabIndex={-1}
+								src={lightboxImage.url}
+								alt={lightboxImage.alt}
 								className="lightbox-img"
 							/>
-							<button type="button" className="toggle-btn lightbox-close" onClick={closeLightbox} aria-label={t('portfolio.close')}>×</button>
+							<button 
+								type="button" 
+								className="toggle-btn lightbox-close" 
+								onClick={closeLightbox} 
+								aria-label={t('portfolio.close', 'Close')}
+							>
+								×
+							</button>
 						</div>
 					</div>
 				)}
