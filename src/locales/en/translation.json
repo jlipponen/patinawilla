@@ -23,20 +23,20 @@
         "title": "Services",
         "list": [
             {
-                "title": "Upholstery",
-                "desc": "Reupholstering and surface finishing for furniture."
+                "title": "Corporate clients",
+                "desc": "Fire-safe and durable fabrics and faux leathers selected for public spaces."
             },
             {
-                "title": "Restoration",
-                "desc": "Furniture repair and restoration."
+                "title": "Industrial upholstery",
+                "desc": "Reupholstery and surface treatment of furniture."
             },
             {
-                "title": "Textiles",
-                "desc": "Interior textiles, cushions and tailored work."
+                "title": "Upholstery work",
+                "desc": "Traditional upholstery of sofas and chairs, including spring tying."
             },
             {
-                "title": "Commercial clients",
-                "desc": "Hotels, restaurants and public spaces."
+                "title": "Surface treatments",
+                "desc": "Repainting, staining, and lacquering of furniture, as well as wood repairs."
             }
         ]
     },

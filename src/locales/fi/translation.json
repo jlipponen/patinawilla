@@ -23,20 +23,20 @@
         "title": "Palvelut",
         "list": [
             {
-                "title": "Verhoilu",
+                "title": "Yritysasiakkaat",
+                "desc": "Julkitiloihin valittavat paloturvalliset ja kestävät kankaat sekä keinonahat."
+            },
+            {
+                "title": "Teolliset verhoilut",
                 "desc": "Kalusteiden uudelleenverhoilu ja pintakäsittely."
             },
             {
-                "title": "Entisöinti",
-                "desc": "Huonekalujen kunnostus ja entisöinti."
+                "title": "Verhoilutyöt",
+                "desc": "Perinteisten sohvien ja tuolien verhoilut sekä joustinten sidonnat."
             },
             {
-                "title": "Tekstiilityöt",
-                "desc": "Sisustustekstiilit, tyynyt ja mittatilaustyöt."
-            },
-            {
-                "title": "Yritysasiakkaat",
-                "desc": "Hotellit, ravintolat ja julkiset tilat."
+                "title": "Pintakäsittelyt",
+                "desc": "Huonekalujen uudelleen maalaus, petsaus ja lakkaus sekä puukorjaukset."
             }
         ]
     },
