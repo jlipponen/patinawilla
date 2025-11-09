@@ -60,7 +60,8 @@ export function useS3Gallery({ bucket, region = 'eu-north-1', prefix }: UseS3Gal
               url: `${baseUrl}/${encodeURIComponent(key)}`,
             };
           })
-          .filter((item): item is GalleryItem => item !== null);
+          .filter((item): item is GalleryItem => item !== null)
+          .reverse(); // Reverse to show newest first
 
         setItems(images);
         setError(null);
