@@ -1,0 +1,30 @@
+PROPRIETARY IMAGES LICENSE
+
+Copyright (c) 2025 PatinaWilla Oy. All Rights Reserved.
+
+All images listed below are proprietary and confidential:
+
+1. LOCAL IMAGES (in repository):
+   - src/assets/images/ui/entrepreneur.jpg
+   - src/assets/images/ui/services-corporate.jpg
+   - src/assets/images/ui/services-industrial.jpg
+   - src/assets/images/ui/services-surface.jpg
+   - src/assets/images/ui/services-upholstery.jpg
+
+2. GALLERY IMAGES (AWS S3):
+   - All images stored in the AWS S3 bucket "patinawilla-gallery"
+   - Bucket location: s3://patinawilla-gallery
+   - Accessible via: https://patinawilla-gallery.s3.eu-north-1.amazonaws.com
+
+Unauthorized copying, downloading, distribution, modification, public display, 
+or any other use of these images, via any medium, is strictly prohibited without 
+prior written permission from the copyright holder.
+
+This includes but is not limited to:
+- Downloading images from the S3 bucket or repository
+- Using images in other projects or websites
+- Republishing images on other platforms
+- Creating derivative works from these images
+- Commercial or non-commercial use without permission
+
+For licensing inquiries or permission requests, contact: patinawilla@gmail.com

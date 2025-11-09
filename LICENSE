@@ -1,13 +1,23 @@
 MIT License
 
-Copyright (c) 2025 Jan Lipponen
+Copyright (c) 2025 PatinaWilla Oy
+
+EXCEPTIONS:
+The following content is NOT covered by this MIT License and is subject to 
+separate licensing terms (see PROPRIETARY-IMAGES.LICENSE):
+- src/assets/images/ui/entrepreneur.jpg
+- src/assets/images/ui/services-corporate.jpg
+- src/assets/images/ui/services-industrial.jpg
+- src/assets/images/ui/services-surface.jpg
+- src/assets/images/ui/services-upholstery.jpg
+- All images in the AWS S3 bucket "patinawilla-gallery"
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+of this software and associated documentation files (the "Software"), excluding
+the file(s) and content listed above, to deal in the Software without restriction, 
+including without limitation the rights to use, copy, modify, merge, publish, 
+distribute, sublicense, and/or sell copies of the Software, and to permit persons 
+to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
