@@ -13,6 +13,17 @@ export function Footer() {
 					<img src={svmlLogo} alt="Suomen Verhoilijamestarien Liitto jäsenlogo" />
 				</div>
 				<small>{t('footer.copyright', { year: new Date().getFullYear() })}</small>
+				<small className="website-credit">
+					{t('footer.websiteBy')}{' '}
+					<a 
+						href="https://github.com/jlipponen/patinawilla" 
+						target="_blank" 
+						rel="noopener noreferrer"
+						aria-label={t('footer.viewSource')}
+					>
+						{t('footer.viewSource')}
+					</a>
+				</small>
 			</div>
 		</footer>
 	);

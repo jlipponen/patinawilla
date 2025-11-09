@@ -83,7 +83,9 @@
     },
     "footer": {
         "partners": "Brands",
-        "copyright": "© {{year}} PatinaWilla. All rights reserved."
+        "copyright": "© {{year}} PatinaWilla. All rights reserved.",
+        "websiteBy": "Website by PatinaWilla Oy •",
+        "viewSource": "Sources in GitHub"
     },
     "address": {
         "line1": "Friitalantie 11 C 4, 28400 Ulvila"
