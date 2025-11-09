@@ -42,7 +42,7 @@
     },
     "portfolio": {
         "title": "Työnäytteitä",
-        "loadFailed": "Kuvien lataus epäonnistui.",
+        "loadFailed": "Kuvien lataus epäonnistui",
         "retry": "Yritä uudelleen",
         "prev": "Edellinen kuva",
         "next": "Seuraava kuva",

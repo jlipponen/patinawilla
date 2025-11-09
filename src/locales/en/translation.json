@@ -42,7 +42,7 @@
     },
     "portfolio": {
         "title": "Work samples",
-        "loadFailed": "Failed to load images.",
+        "loadFailed": "Failed to load images",
         "retry": "Retry",
         "prev": "Previous picture",
         "next": "Next picture",

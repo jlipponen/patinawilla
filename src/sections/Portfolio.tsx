@@ -33,8 +33,9 @@ export interface PortfolioProps { }
 
 export function Portfolio() {
 	const { t } = useTranslation();
-	const { items, loading, error, retry } = useS3Gallery({ bucket: 'patinawilla-gallery', region: 'eu-north-1', limit: 12 });
+	const { items, loading, error } = useS3Gallery({ bucket: 'patinawilla-gallery', region: 'eu-north-1' });
 	const [lightboxImage, setLightboxImage] = useState<{ url: string; alt: string } | null>(null);
+	const [activeIndex, setActiveIndex] = useState(0);
 
 	const openLightbox = (url: string, alt: string) => {
 		setLightboxImage({ url, alt });
@@ -58,14 +59,24 @@ export function Portfolio() {
 		return () => window.removeEventListener('keydown', handleEscape);
 	}, [lightboxImage]);
 
+	// Preload next image when approaching it
+	useEffect(() => {
+		if (activeIndex >= 8 && items.length > 0) {
+			const nextIndex = activeIndex + 2;
+			if (nextIndex < items.length) {
+				const img = new Image();
+				img.src = items[nextIndex].url;
+			}
+		}
+	}, [activeIndex, items]);
+
 	return (
 		<section id="portfolio" aria-labelledby="portfolio-heading" className="alt">
 			<div className="container">
 				<h2 id="portfolio-heading">{t('portfolio.title')}</h2>
 				{error && (
 					<p role="alert" style={{ color: '#b00' }}>
-						{t('portfolio.loadFailed')}
-						<button onClick={retry} className="toggle-btn" style={{ marginLeft: '.75rem' }}>{t('portfolio.retry')}</button>
+						{t('portfolio.loadFailed')}: {error}
 					</p>
 				)}
 				
@@ -99,12 +110,13 @@ export function Portfolio() {
 							nextSlideMessage: t('portfolio.next', 'Next slide'),
 							paginationBulletMessage: t('portfolio.goToSlide', 'Go to slide {{index}}'),
 						}}
+						onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
 						watchOverflow={false}
 						className="portfolio-swiper"
 						loop={true}
 						grabCursor={true}
 					>
-						{items.map(img => (
+						{items.map((img, index) => (
 							<SwiperSlide key={img.key}>
 								<button
 									className="portfolio-slide-button"
@@ -112,7 +124,7 @@ export function Portfolio() {
 									aria-label={`${img.alt} – ${t('portfolio.openLarge', 'Click to enlarge')}`}
 									type="button"
 								>
-									<img src={img.url} alt={img.alt} loading="lazy" />
+									<img src={img.url} alt={img.alt} loading={index < 10 ? "eager" : "lazy"} />
 								</button>
 							</SwiperSlide>
 						))}
