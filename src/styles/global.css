@@ -352,7 +352,6 @@ section::before {
   );
 }
 
-/* Enhanced headings */
 section h2 {
   margin: 0 0 2.5rem;
   font-size: clamp(2rem, 5vw, 2.8rem);
@@ -934,7 +933,6 @@ button {
   vertical-align: middle;
 }
 
-/* Adjust toggle button background for dark mode */
 [data-theme="dark"] .toggle-btn {
   background: var(--linen-300); /* Lighter color for dark mode */
   color: var(--color-text);
@@ -1070,6 +1068,7 @@ button {
   }
   section h2 {
     margin: 0 0 1.5rem;
+    font-size: clamp(1.75rem, 5vw, 2.8rem);
   }
   .cta-btn {
     padding: 0.55rem 1rem;
