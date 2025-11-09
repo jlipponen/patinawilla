@@ -42,7 +42,7 @@
     },
     "portfolio": {
         "title": "Työnäytteitä",
-        "loadFailed": "Kuvien lataus epäonnistui.",
+        "loadFailed": "Kuvien lataus epäonnistui",
         "retry": "Yritä uudelleen",
         "prev": "Edellinen kuva",
         "next": "Seuraava kuva",
@@ -83,7 +83,9 @@
     },
     "footer": {
         "partners": "Tuotemerkit",
-        "copyright": "© {{year}} PatinaWilla. Kaikki oikeudet pidätetään."
+        "copyright": "© {{year}} PatinaWilla. Kaikki oikeudet pidätetään.",
+        "websiteBy": "Verkkosivut: PatinaWilla Oy •",
+        "viewSource": "Lähdekoodi GitHubissa"
     },
     "address": {
         "line1": "Friitalantie 11 C 4, 28400 Ulvila"
