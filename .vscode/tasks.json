@@ -1,0 +1,11 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "server-is-running",
+            "type": "shell",
+            "command": "curl -s http://localhost:5173 > /dev/null || (echo -e 'Server is not running!\\nStart with: npm run dev' && exit 1)",
+            "problemMatcher": []
+        }
+    ]
+}
