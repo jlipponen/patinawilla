@@ -16,7 +16,7 @@ export function Contact(_: ContactProps) {
 		{ dayKey: 'hours.Sunday', time: t('hours.Closed') },
 	];
 
-	const mapQuery = encodeURIComponent('Friitalantie 11 4, 28400 Ulvila');
+	const mapQuery = encodeURIComponent('Friitalantie 11, 28400 Ulvila');
 	const mapSrc = `https://www.google.com/maps?q=${mapQuery}&hl=fi&z=15&output=embed`;
 
 	return (
@@ -75,7 +75,6 @@ export function Contact(_: ContactProps) {
 							<span>
 								{t('address.line1')}
 							</span>
-
 							<div className="map-wrapper">
 								<iframe
 									title={t('contact.mapTitle')}

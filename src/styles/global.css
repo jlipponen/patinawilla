@@ -730,7 +730,7 @@ section h2::after {
 }
 .contact-card {
   border: 1px solid var(--linen-300);
-  padding: 2rem;
+  padding: 1.50rem;
   background: linear-gradient(135deg, var(--linen-glow), var(--linen-100));
   border-radius: 1rem;
   display: flex;
@@ -1107,7 +1107,7 @@ button {
     gap: 1rem;
   }
   .contact-card {
-    padding: 1rem;
+    padding: 1.25rem;
   }
   .contact-info-card p {
     margin: 0.15rem 0;
