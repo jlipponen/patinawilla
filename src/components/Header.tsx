@@ -44,7 +44,6 @@ export function Header({ onLanguageChange }: Readonly<HeaderProps>) {
             <div className="container header-inner">
                 <div className="brand-block">
                     <a href="#home" className="brand">{t('brand')}</a>
-                    <span className="brand-tagline">{t('brandTagline')}</span>
                 </div>
                 <nav id="site-nav" aria-label={t('nav.aria', 'Main navigation')}>
                     <ul>
