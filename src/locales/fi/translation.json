@@ -82,7 +82,7 @@
     },
     "footer": {
         "partners": "Tuotemerkit",
-        "copyright": "© {{year}} PatinaWilla. Kaikki oikeudet pidätetään.",
+        "copyright": "© {{year}} PatinaWilla Oy. Kaikki oikeudet pidätetään.",
         "websiteBy": "Verkkosivut: PatinaWilla Oy •",
         "viewSource": "Lähdekoodi GitHubissa"
     },
