@@ -4,12 +4,13 @@ import { useS3Gallery } from '../lib/useS3Gallery';
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Keyboard, A11y } from 'swiper/modules';
+import { Navigation, Pagination, Keyboard, A11y, Grid } from 'swiper/modules';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/grid';
 
 // This file hosts both Portfolio and About sections to keep bundle small.
 export function About() {
@@ -59,14 +60,15 @@ export function Portfolio() {
 		return () => window.removeEventListener('keydown', handleEscape);
 	}, [lightboxImage]);
 
-	// Preload next image when approaching it
+	// Preload next batch of images when approaching them
 	useEffect(() => {
 		if (activeIndex >= 8 && items.length > 0) {
-			const nextIndex = activeIndex + 2;
-			if (nextIndex < items.length) {
+			// Preload the next 4 images
+			const nextBatch = items.slice(activeIndex + 4, activeIndex + 8);
+			nextBatch.forEach(item => {
 				const img = new Image();
-				img.src = items[nextIndex].url;
-			}
+				img.src = item.url;
+			});
 		}
 	}, [activeIndex, items]);
 
@@ -88,10 +90,14 @@ export function Portfolio() {
 
 				{!loading && items.length > 0 && (
 					<Swiper
-						modules={[Navigation, Pagination, Keyboard, A11y]}
+						modules={[Navigation, Pagination, Keyboard, A11y, Grid]}
 						spaceBetween={12}
-						slidesPerView={3}
-						slidesPerGroup={1}
+						slidesPerView={2}
+						slidesPerGroup={4}
+						grid={{
+							rows: 2,
+							fill: 'row',
+						}}
 						navigation
 						pagination={{ 
 							clickable: true,
@@ -102,7 +108,12 @@ export function Portfolio() {
 							onlyInViewport: true,
 						}}
 						breakpoints={{
-							760: { slidesPerView: 4, spaceBetween: 12, slidesPerGroup: 1 },
+							760: { 
+								slidesPerView: 4, 
+								spaceBetween: 12, 
+								slidesPerGroup: 4,
+								grid: { rows: 1, fill: 'row' },
+							},
 						}}
 						a11y={{
 							enabled: true,

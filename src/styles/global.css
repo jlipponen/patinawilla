@@ -1070,10 +1070,20 @@ button {
     padding: 0.55rem 1rem;
     font-size: 0.58rem;
   }
+  .portfolio-swiper {
+    padding: 1rem 0 3.5rem;
+  }
+  /* Ensure proper row spacing in grid mode */
+  .portfolio-swiper .swiper-wrapper {
+    margin-bottom: 0;
+  }
+  .portfolio-swiper.swiper-grid > .swiper-wrapper {
+    flex-wrap: wrap;
+  }
   .portfolio-swiper .swiper-button-prev,
   .portfolio-swiper .swiper-button-next {
-    width: 15px;
-    height: 15px;
+    width: 35px;
+    height: 35px;
   }
   .about-wrapper {
     grid-template-columns: 1fr;
